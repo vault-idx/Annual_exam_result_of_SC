@@ -3,67 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Results - Demo</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0a0a0a;
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-        .login-container, .result-container {
-            max-width: 500px;
-            margin: 80px auto;
-            padding: 20px;
-            background: #1a1a1a;
-            border-radius: 12px;
-            box-shadow: 0px 0px 15px rgba(255,255,255,0.1);
-        }
-        h1, h2 {
-            text-align: center;
-        }
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: none;
-            margin-top: 10px;
-            font-size: 16px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 15px;
-            font-size: 16px;
-            border: none;
-            background: #0078ff;
-            color: white;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #005fc0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-        table, th, td {
-            border: 1px solid #444;
-        }
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background: #222;
-        }
-        .hidden {
-            display: none;
-        }
-    </style>
+    <title>College Result - Demo</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -72,7 +13,7 @@
     <p>Enter Password:</p>
     <input type="password" id="passwordInput" placeholder="Password">
     <button onclick="login()">Login</button>
-    <p id="error" style="color:red; text-align:center; display:none;">Incorrect Password!</p>
+    <p id="error" class="error-msg">Incorrect Password!</p>
 </div>
 
 <div class="result-container hidden" id="resultPage">
@@ -88,53 +29,23 @@
                 <th>MCQ</th>
                 <th>Practical</th>
                 <th>Total</th>
+                <th>GPA</th>
             </tr>
         </thead>
         <tbody id="resultTable"></tbody>
+        <tfoot>
+            <tr>
+                <th colspan="4">Subtotal</th>
+                <th id="subtotalMarks">0</th>
+                <th id="totalGPA">0.00</th>
+            </tr>
+            <tr>
+                <th colspan="6" id="studentRating"></th>
+            </tr>
+        </tfoot>
     </table>
 </div>
 
-<script>
-    const password = "Hello Sourav";
-
-    function login() {
-        const enteredPass = document.getElementById("passwordInput").value;
-        if (enteredPass === password) {
-            document.getElementById("loginPage").classList.add("hidden");
-            document.getElementById("resultPage").classList.remove("hidden");
-            loadResults();
-        } else {
-            document.getElementById("error").style.display = "block";
-        }
-    }
-
-    function loadResults() {
-        const subjects = [
-            { name: "Bangla", theory: 65, mcq: 20, practical: 0 },
-            { name: "English", theory: 72, mcq: 0, practical: 0 },
-            { name: "ICT", theory: 55, mcq: 20, practical: 15 },
-            { name: "Physics", theory: 60, mcq: 15, practical: 15 },
-            { name: "Chemistry", theory: 58, mcq: 18, practical: 15 },
-            { name: "Biology", theory: 62, mcq: 17, practical: 15 },
-            { name: "Higher Math", theory: 70, mcq: 20, practical: 15 }
-        ];
-
-        let tableBody = document.getElementById("resultTable");
-        tableBody.innerHTML = "";
-
-        subjects.forEach(sub => {
-            let total = sub.theory + sub.mcq + sub.practical;
-            let row = `<tr>
-                <td>${sub.name}</td>
-                <td>${sub.theory}</td>
-                <td>${sub.mcq}</td>
-                <td>${sub.practical}</td>
-                <td>${total}</td>
-            </tr>`;
-            tableBody.innerHTML += row;
-        });
-    }
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
