@@ -44,10 +44,15 @@ button:hover {
     background: #005fc0;
 }
 
+.table-wrapper {
+    overflow-x: auto;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
+    min-width: 600px; /* Prevents too much squeezing */
 }
 
 table, th, td {
@@ -76,11 +81,10 @@ th {
 /* Responsive for mobile */
 @media screen and (max-width: 600px) {
     .login-container, .result-container {
-        margin: 20px;
+        margin: 15px;
         padding: 15px;
     }
-    table, th, td {
+    table {
         font-size: 14px;
-        padding: 6px;
     }
 }
